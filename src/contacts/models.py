@@ -28,9 +28,6 @@ class Department(models.Model):
         ordering = ["name"]
 
 class Person(models.Model):
-    """
-    These are the individual items themselves
-    """
     first_name = models.TextField(blank=True)
     last_name = models.TextField(blank=True)
     job_title = models.TextField(blank=True)
