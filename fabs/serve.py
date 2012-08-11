@@ -22,4 +22,4 @@ def frontend():
     """
     Run Backend API
     """
-    local('python -m SimpleHTTPServer %d' % env.frontend_port)
+    local('cd frontend && python -m SimpleHTTPServer %d' % env.frontend_port)

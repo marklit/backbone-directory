@@ -4,7 +4,7 @@ from .models import Person
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
 from tastypie.cache import SimpleCache
-from tastypie.resources import ModelResource
+from tastypie.resources import ModelResource, ALL, ALL_WITH_RELATIONS
 from tastypie.throttle import BaseThrottle
 
 
@@ -24,11 +24,16 @@ class PersonResource(ModelResource):
     class Meta:
         allowed_methods = ["get"]
         cache = SimpleCache()
-        fields = ["first_name", "last_name"]
+        fields = ["id", "first_name", "last_name"]
         include_resource_uri = False
-        queryset = Person.objects.all()
+        queryset = Person.objects.filter(hide_person=False)
         resource_name = "person"
         #authentication = BasicAuthentication()
         #authorization = DjangoAuthorization()
         throttle = \
             BaseThrottle(throttle_at=100, timeframe=3600, expiration=604800)
+        filtering = {
+            'id': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
+            'first_name': ['exact', 'startswith', 'endswith', 'contains'],
+            'created_time': ['exact', 'gt', 'gte', 'lt', 'lte', 'range'],
+        }

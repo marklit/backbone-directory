@@ -7,7 +7,7 @@ import json
 class ContactsAdminTests(TestCase):
     fixtures = ['contacts']
 
-    def test_person(self):
+    def test_all_people(self):
         c = Client()
         result = c.get('/api/v1/person/?format=json')
         self.assertEqual(result.status_code, 200)
@@ -34,3 +34,11 @@ class ContactsAdminTests(TestCase):
         for key in ('first_name', 'last_name'):
             self.assertEqual(response['objects'][0][key], 
                                 expected_objects[0][key])
+    
+    def test_no_results(self):
+        c = Client()
+        result = c.get('/api/v1/person/?format=json&id=2')
+        self.assertEqual(result.status_code, 200)
+        
+        response = json.loads(result.content)
+        self.assertEqual(response['meta']['total_count'], 0)
