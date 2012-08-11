@@ -1,0 +1,11 @@
+*.log
+*.pot
+*.pyc
+local_settings.py
+.coverage
+*,cover
+local_settings.ini
+celerybeat-schedule
+*.pid
+*.rdb
+*.rdb
