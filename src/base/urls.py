@@ -13,8 +13,11 @@ urlpatterns = patterns('',
 )
 
 if settings.DEBUG:
-    urlpatterns += patterns('',
-        url(r'^assets/(?P<path>.*)$', 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }),
-    )
+    for folder_name in ('css', 'js', 'img', 'lib', 'tpl'):
+        urlpatterns += patterns('',
+            url(r'^%s/(?P<path>.*)$' % folder_name, 
+                'django.views.static.serve', {
+                    'document_root': "../frontend/%s/" % folder_name,
+                }
+            )
+        )

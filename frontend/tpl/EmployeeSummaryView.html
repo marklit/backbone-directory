@@ -1,13 +1,13 @@
-<p><img src="pics/<%= firstName %>_<%= lastName %>.jpg" width="160" height="160"/></p>
-<h1><%= firstName %> <%= lastName %></h1>
-<h3><%= title %></h3>
+<p><img src="<%= avatar_icon %>" width="50" height="50"/></p>
+<h1><%= first_name %> <%= last_name %></h1>
+<h3><%= job_title %></h3>
 
 <br>
 <div class="row">
     <div class="span6">
         <table class="table table-striped">
             <%
-            if (managerId>0)
+            if (first_name == 'mike')
             {
             %>
             <tr>
@@ -19,19 +19,15 @@
             %>
             <tr>
                 <td><h6>Office Phone:</h6></td>
-                <td><i class="icon-home"></i> <%= officePhone %></td>
+                <td><i class="icon-home"></i> <%= office_phone %></td>
             </tr>
             <tr>
                 <td><h6>Cell Phone:</h6></td>
-                <td><i class="icon-headphones"></i> <%= cellPhone %></td>
+                <td><i class="icon-headphones"></i> <%= mobile_phone %></td>
             </tr>
             <tr>
                 <td><h6>Email:</h6></td>
-                <td><i class="icon-envelope"></i> <a href="mailto:<%= email %>"><%= email %></a></td>
-            </tr>
-            <tr>
-                <td><h6>Twitter:</h6></td>
-                <td><i class="icon-retweet"></i> <a href=""><%= twitterId %></a></td>
+                <td><i class="icon-envelope"></i> <a href="mailto:<%= email_address %>"><%= email_address %></a></td>
             </tr>
         </table>
 

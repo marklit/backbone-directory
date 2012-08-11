@@ -24,7 +24,8 @@ class PersonResource(ModelResource):
     class Meta:
         allowed_methods = ["get"]
         cache = SimpleCache()
-        fields = ["id", "first_name", "last_name"]
+        fields = ["id", "first_name", "last_name", "job_title", "blog_url",
+            "email_address", "mobile_phone", "office_phone"]
         include_resource_uri = False
         queryset = Person.objects.filter(hide_person=False)
         resource_name = "person"
@@ -35,5 +36,9 @@ class PersonResource(ModelResource):
         filtering = {
             'id': ['exact', 'range', 'gt', 'gte', 'lt', 'lte'],
             'first_name': ['exact', 'startswith', 'endswith', 'contains'],
-            'created_time': ['exact', 'gt', 'gte', 'lt', 'lte', 'range'],
+            'created_time': ALL,
         }
+    
+    def dehydrate(self, bundle):
+        bundle.data['avatar_icon'] = bundle.obj.get_icon_url()
+        return bundle

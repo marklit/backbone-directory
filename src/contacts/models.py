@@ -54,17 +54,11 @@ class Person(models.Model):
         return "%s..." % full_name[:60] if len(full_name) > 60 else full_name
         
     def get_icon_url(self):
-        if self.photo_url is not None and len(unicode(
-            self.photo_url).strip()) > 0:
-            return "<img src='%s' width='75' height='75' alt='' />" % (
-                self.photo_url)
+        if self.photo_url is not None and \
+            len(unicode(self.photo_url).strip()):
+            return self.photo_url
         
-        return """
-                <img src="http://placehold.it/75x75/ff9900/000000/" 
-                width="75" height="75" alt="" />
-                """
-    
-    get_icon_url.allow_tags = True
+        return 'http://placehold.it/50x50/ff9900/000000/'
     
     class Meta:
         verbose_name_plural = _("People")
