@@ -4,7 +4,7 @@ window.Employee = Backbone.Model.extend({
     
     initialize:function () {
         this.reports = new EmployeeCollection();
-        this.reports.url = '&id=' + this.id;
+        this.reports.url = '/api/v1/person/?format=json&id=' + this.id;
     },
     
     parse: function(response){
