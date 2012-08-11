@@ -10,9 +10,22 @@ import pytz
 
 class City(models.Model):
     name = models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return unicode(self.name)
+    
+    class Meta:
+        verbose_name_plural = _("Cities")
+        ordering = ["name"]
 
 class Department(models.Model):
     name = models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return unicode(self.name)
+    
+    class Meta:
+        ordering = ["name"]
 
 class Person(models.Model):
     """

@@ -1,5 +1,6 @@
 from fabric.api import env
-from fabs.dev import *
+from fabs.coding import *
+from fabs.serve import *
 from fabs.testing import *
 
 

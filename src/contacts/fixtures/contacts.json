@@ -1,0 +1,34 @@
+[
+    {
+        "pk": 1, 
+        "model": "contacts.city", 
+        "fields": {
+            "name": "Tallinn"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "contacts.department", 
+        "fields": {
+            "name": "Technical"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "contacts.person", 
+        "fields": {
+            "city": 1, 
+            "first_name": "Mark", 
+            "last_name": "Litwintschik", 
+            "created_time": "2012-08-11T10:38:00.092Z", 
+            "office_phone": "123-456-7890", 
+            "mobile_phone": "123-456-7891", 
+            "hide_person": false, 
+            "blog_url": "http://marksblogg.com/", 
+            "department": 1, 
+            "photo_url": "", 
+            "email_address": "mark@localhost", 
+            "job_title": "Python Developer"
+        }
+    }
+]
