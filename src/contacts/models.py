@@ -55,4 +55,4 @@ class Person(models.Model):
     
     class Meta:
         verbose_name_plural = _("People")
-        ordering = ["last_name, first_name"]
+        ordering = ["last_name", "first_name"]

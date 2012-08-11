@@ -82,6 +82,7 @@ INSTALLED_APPS = (
     'south',
     'tastypie',
     'api',
+    'contacts',
     'home',
 )
 
