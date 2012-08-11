@@ -1,8 +1,6 @@
 import ConfigParser
 import djcelery
 import os
-from redis import Redis, ConnectionError
-#from S3 import CallingFormat
 import sys
 
 
@@ -98,34 +96,6 @@ djcelery.setup_loader()
 if 'test' in sys.argv:
     # See https://github.com/celery/django-celery/issues/149
     SOUTH_MIGRATION_MODULES = {'djcelery': 'ignore'}
-
-REDIS_HOST = config.get('redis', 'host', '127.0.0.1')
-REDIS_PORT = int(config.get('redis', 'port', 6379))
-REDIS_DB = int(config.get('redis', 'db', 2))
-
-if 'celeryd' not in sys.argv:
-    redis_tester = Redis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
-    redis_works = False
-    
-    try:
-        redis_tester.info()
-        redis_works = True
-    except ConnectionError:
-        pass
-    
-    if redis_works:
-        CACHES = {
-            'default': {
-                'BACKEND': 'redis_cache.RedisCache',
-                'LOCATION': '%s:%d' % (REDIS_HOST, REDIS_PORT),
-                'TIMEOUT': 2,
-                'OPTIONS': {
-                    'DB': REDIS_DB,
-                    'PARSER_CLASS': 'redis.connection.HiredisParser',
-                    'PICKLE_VERSION': 2,
-                },
-            },
-        }
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
