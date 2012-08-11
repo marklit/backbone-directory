@@ -1,9 +1,8 @@
-from fabric.api import task, settings, roles, sudo, run, env, local
+from fabric.api import env
+from fabs.dev import *
+from fabs.testing import *
 
 
-def backend():
-    local('cd src && python manage.py run_gunicorn 0.0.0.0:8000')
-
-
-def frontend():
-    local('python -m SimpleHTTPServer')
+env.django_apps = ('api', 'contacts', 'home',)
+env.backend_iface = '0.0.0.0:8001'
+env.frontend_port = 8000
