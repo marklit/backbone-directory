@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from haystack.query import SearchQuerySet
 from .models import Person
+from tastypie import fields
 from tastypie.authentication import BasicAuthentication
 from tastypie.authorization import DjangoAuthorization
 from tastypie.cache import SimpleCache
@@ -9,6 +10,8 @@ from tastypie.throttle import BaseThrottle
 
 
 class PersonResource(ModelResource):
+    avatar_icon = fields.CharField(attribute='get_icon_url')
+    
     def build_filters(self, filters=None):
         if filters is None:
             filters = {}
@@ -25,7 +28,7 @@ class PersonResource(ModelResource):
         allowed_methods = ["get"]
         cache = SimpleCache()
         fields = ["id", "first_name", "last_name", "job_title", "blog_url",
-            "email_address", "mobile_phone", "office_phone"]
+            "email_address", "mobile_phone", "office_phone", "avatar_icon"]
         include_resource_uri = False
         queryset = Person.objects.filter(hide_person=False)
         resource_name = "person"
@@ -39,6 +42,6 @@ class PersonResource(ModelResource):
             'created_time': ALL,
         }
     
-    def dehydrate(self, bundle):
-        bundle.data['avatar_icon'] = bundle.obj.get_icon_url()
-        return bundle
+    # def dehydrate(self, bundle):
+    #     bundle.data['avatar_icon'] = bundle.obj.get_icon_url()
+    #     return bundle
