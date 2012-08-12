@@ -8,7 +8,6 @@ window.Employee = Backbone.Model.extend({
     },
     
     parse: function(response){
-        //console.log('parse called', response)
        return response.objects[0];
     }
 
@@ -24,14 +23,11 @@ window.EmployeeCollection = Backbone.Collection.extend({
         var url = (key == '') ? 
             '/api/v1/person/?format=json' : 
             "/api/v1/person/?format=json&first_name__contains=" + key;
-        console.log('findByName: ' + key);
         var self = this;
         $.ajax({
             url:url,
             dataType:"json",
             success:function (data) {
-                console.log("search success");
-                console.log(data.objects)
                 self.reset(data.objects);
             }
         });

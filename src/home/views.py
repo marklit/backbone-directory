@@ -14,8 +14,12 @@ def home(request):
 @json_response
 def login_user(request):
     # @todo Change GET to POST as soon as you can
-    user = authenticate(username=request.GET.get('username', ''), 
-        password=request.GET.get('password', ''))
+    user = authenticate(username=request.POST.get('username', ''), 
+        password=request.POST.get('password', ''))
+    
+    if user is None:
+        return {'login_successful': False, 'reason': 'Account not found'}
+    
     login(request, user)
     
     if user is not None:

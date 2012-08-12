@@ -3,6 +3,7 @@ window.Router = Backbone.Router.extend({
     routes: {
         "": "home",
         "contact": "contact",
+        "login": "login",
         "employees/:id": "employeeDetails"
     },
 
@@ -36,6 +37,15 @@ window.Router = Backbone.Router.extend({
         $('#content').html(this.contactView.el);
         this.headerView.select('contact-menu');
     },
+    
+    login: function () {
+        if (!this.loginView) {
+            this.loginView = new LoginView({model: new LoginStatus()});
+            this.loginView.render();
+        }
+        $('#content').html(this.loginView.el);
+        this.headerView.select('login-menu');
+    },
 
     employeeDetails: function (id) {
         var employee = new Employee({id: id});
@@ -50,8 +60,10 @@ window.Router = Backbone.Router.extend({
 
 });
 
-templateLoader.load(["HomeView", "ContactView", "HeaderView", "EmployeeView", "EmployeeSummaryView", "EmployeeListItemView"],
-    function () {
+// Loads them out of views/
+templateLoader.load(["HomeView", "ContactView", "HeaderView", "EmployeeView", 
+    "EmployeeSummaryView", "EmployeeListItemView", "LoginView"], function () {
         app = new Router();
         Backbone.history.start();
-    });
+    }
+);

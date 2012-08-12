@@ -13,7 +13,7 @@ urlpatterns = patterns('',
 )
 
 if settings.DEBUG:
-    for folder_name in ('css', 'js', 'img', 'lib', 'pics', 'tpl'):
+    for folder_name in ('css', 'js', 'img', 'lib', 'tpl'):
         urlpatterns += patterns('',
             url(r'^%s/(?P<path>.*)$' % folder_name, 
                 'django.views.static.serve', {

@@ -3,7 +3,7 @@ window.EmployeeView = Backbone.View.extend({
     tagName:"div", // Not required since 'div' is the default if no el or tagName specified
 
     initialize:function () {
-//        this.template = templates['Employee'];
+        // this.template = templates['Employee'];
     },
 
     render: function () {
@@ -26,7 +26,7 @@ window.EmployeeSummaryView = Backbone.View.extend({
     tagName:"div", // Not required since 'div' is the default if no el or tagName specified
 
     initialize:function () {
-//        this.template = templates['EmployeeSummary'];
+        // this.template = templates['EmployeeSummary'];
         this.model.bind("change", this.render, this);
     },
 
