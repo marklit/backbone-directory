@@ -11,6 +11,7 @@ def update_fixtures():
     data_sets_and_targets = (
         ('contacts.city contacts.department contacts.person', 'contacts', 
             'contacts'),
+        ('photos.photo', 'photos', 'photos'),
     )
     
     for (model, app, fixture) in data_sets_and_targets:

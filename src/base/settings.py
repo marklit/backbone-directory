@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'api',
     'contacts',
     'home',
+    'photos'
 )
 
 CELERY_SEND_EVENTS = True

@@ -1,43 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>{% block title %}{% endblock %}</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="Technical Demo">
+        <meta name="author" content="Mark Litwintschik">
+    
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+    </head>
 
-    <style>
-        body {
-            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-        }
-    </style>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    <body>
+        <div class="header"></div>
 
-</head>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
 
-<body>
+        <script src="lib/jquery-1.7.2.min.js"></script>
+        <script src="lib/underscore-min.js"></script>
+        <script src="lib/backbone-min.js"></script>
 
-<div class="header"></div>
-
-<div class="container">
-    {% block content %}
-    {% endblock %}
-</div>
-
-<script src="lib/jquery-1.7.2.min.js"></script>
-<script src="lib/underscore-min.js"></script>
-<script src="lib/backbone-min.js"></script>
-
-<script src="js/utils.js"></script>
-<script src="js/models/employeemodel.js"></script>
-<script src="js/views/header.js"></script>
-<script src="js/views/home.js"></script>
-<script src="js/views/contact.js"></script>
-<script src="js/views/employeelist.js"></script>
-<script src="js/views/employeedetails.js"></script>
-
-<script src="js/main.js"></script>
-
-</body>
+        <script src="js/utils.js"></script>
+        <script src="js/models/employeemodel.js"></script>
+        <script src="js/views/header.js"></script>
+        <script src="js/views/home.js"></script>
+        <script src="js/views/contact.js"></script>
+        <script src="js/views/employeelist.js"></script>
+        <script src="js/views/employeedetails.js"></script>
+        
+        <script src="js/main.js"></script>
+    </body>
 </html>
