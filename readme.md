@@ -4,9 +4,10 @@ I forked [backbone-directory](https://github.com/ccoenraets/backbone-directory) 
 
 This demo uses among other technologies the following:
 
- * [D3](http://d3js.org/)
- * [backbone.js](http://backbonejs.org/)
- * [Solr](http://lucene.apache.org/solr/)
+ * [backbone.js](http://backbonejs.org/) (Frontend MVC)
+ * [D3](http://d3js.org/) (Charting)
+ * [Solr](http://lucene.apache.org/solr/) (Search)
+ * [Tastypie](http://tastypieapi.org/) (API Framework for Django)
 
 ## Installation ##
 
@@ -54,10 +55,12 @@ Once that's in place, rebuild the solr indices:
 I try and keep a lot of the commands in `fabric` when possible. `cd` into the root of the repo and run the follow commands to test everything is looking okay:
 
 ```bash
- $ fab test_lint test test_pep8
+ $ fab test_lint
+ $ fab test_pep8
+ $ fab test
 ```
 
-It's pretty likely pylint and pep8 will have some complaints. `test` shouldn't have any issues, if it does, there are problems in the code and or the environment that need to be addressed.
+It's pretty likely `test_lint` and `test_pep8` will have some complaints. `test` shouldn't have any issues, if it does, there are problems in the code and or the environment that need to be addressed.
 
 6. Run the webserver
 
