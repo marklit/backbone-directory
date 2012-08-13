@@ -112,10 +112,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.elasticsearch_backend.' + 
-        'ElasticsearchSearchEngine',
-        'URL': 'http://127.0.0.1:9200/',
-        'INDEX_NAME': 'haystack',
+        'ENGINE': config.get('search', 'engine', 
+            'haystack.backends.solr_backend.SolrEngine'),
+        'URL': config.get('search', 'url', 'http://127.0.0.1:8080/solr')
     },
 }
 

@@ -5,7 +5,6 @@ from .models import Person
 
 class PersonIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
-    created_time = indexes.DateTimeField(model_attr='created_time')
     
     def get_model(self):
         return Person
