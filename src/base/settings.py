@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'haystack',
     'tastypie',
     'api',
+    'base',
     'contacts',
     'home',
     'photos'

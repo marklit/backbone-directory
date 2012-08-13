@@ -21,3 +21,8 @@ if settings.DEBUG:
                 }
             )
         )
+    urlpatterns += patterns('',
+        url(r'^/favicon\.ico$', 
+            'django.views.static.serve', {'document_root': "../frontend/ico/"}
+        )
+    )

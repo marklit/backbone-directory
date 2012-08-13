@@ -1,6 +1,6 @@
 # Technical Demo #
 
-I forked [backbone-directory](https://github.com/ccoenraets/backbone-directory) to use as a boiler plate code base.
+I forked [backbone-directory](https://github.com/ccoenraets/backbone-directory) to use as a boilerplate codebase.
 
 This demo uses among other technologies the following:
 
@@ -8,6 +8,7 @@ This demo uses among other technologies the following:
  * [D3](http://d3js.org/) (Charting)
  * [Solr](http://lucene.apache.org/solr/) (Search)
  * [Tastypie](http://tastypieapi.org/) (API Framework for Django)
+ * [Tornado](http://www.tornadoweb.org/) (Non-blocking Web Server)
 
 ## Installation ##
 
@@ -65,8 +66,10 @@ It's pretty likely `test_lint` and `test_pep8` will have some complaints. `test`
 6. Run the webserver
 
 ```bash
- $ fab backend_dev
+ $ fab backend_tornado
 ```
+
+This will bind the server to `0.0.0.0:8000` and launch it.
 
 7. If you want to dump your contacts or photos table into the default fixtures run the following:
 
