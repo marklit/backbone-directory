@@ -11,9 +11,9 @@ window.EmployeeView = Backbone.View.extend({
         $('#details', this.el).html(new EmployeeSummaryView({model:this.model}).render().el);
         this.model.reports.fetch({
             success:function (data) {
-                console.log('looking at data', data)
-                if (data.length == 0)
+                if (data.length == 0) {
                     $('.no-reports').show();
+                }
             }
         });
         $('#reports', this.el).append(new EmployeeListView({model:this.model.reports}).render().el);

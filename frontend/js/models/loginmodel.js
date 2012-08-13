@@ -1,8 +1,14 @@
 var LoginStatus = Backbone.Model.extend({
-    
-    model: Employee,
 
     url:"/home/login/",
+    
+    defaults: {
+        loggedIn: false
+    },
+    
+    isLoggedIn:function () {
+        return this.loggedIn
+    },
 
     login:function (username, password) {
         var self = this;
@@ -13,7 +19,7 @@ var LoginStatus = Backbone.Model.extend({
             dataType:"json",
             success:function (data) {
                 console.log(data)
-                //self.reset(data.objects);
+                // this.set({'loggedIn': True});
             }
         });
     }

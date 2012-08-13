@@ -7,10 +7,9 @@ window.Employee = Backbone.Model.extend({
         this.reports.url = '/api/v1/person/?format=json&id=' + this.id;
     },
     
-    parse: function(response){
+    parse: function(response) {
        return response.objects[0];
     }
-
 });
 
 window.EmployeeCollection = Backbone.Collection.extend({

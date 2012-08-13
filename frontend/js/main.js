@@ -2,6 +2,7 @@ window.Router = Backbone.Router.extend({
 
     routes: {
         "": "home",
+        "charts": "charts",
         "contact": "contact",
         "login": "login",
         "employees/:id": "employeeDetails"
@@ -27,6 +28,15 @@ window.Router = Backbone.Router.extend({
         }
         $("#content").html(this.homeView.el);
         this.headerView.select('home-menu');
+    },
+    
+    charts: function () {
+        if (!this.chartsView) {
+            this.chartsView = new ChartsView({model: new CameraSettings()});
+            this.chartsView.render();
+        }
+        $('#content').html(this.chartsView.el);
+        this.headerView.select('charts-menu');
     },
 
     contact: function () {
@@ -62,7 +72,8 @@ window.Router = Backbone.Router.extend({
 
 // Loads them out of views/
 templateLoader.load(["HomeView", "ContactView", "HeaderView", "EmployeeView", 
-    "EmployeeSummaryView", "EmployeeListItemView", "LoginView"], function () {
+    "EmployeeSummaryView", "EmployeeListItemView", "LoginView", 
+    "ChartsView"], function () {
         app = new Router();
         Backbone.history.start();
     }
