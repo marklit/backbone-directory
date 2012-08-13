@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'gunicorn',
     'south',
+    'haystack',
     'tastypie',
     'api',
     'contacts',

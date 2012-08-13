@@ -21,7 +21,7 @@ window.EmployeeCollection = Backbone.Collection.extend({
     findByName:function (key) {
         var url = (key == '') ? 
             '/api/v1/person/?format=json' : 
-            "/api/v1/person/?format=json&first_name__contains=" + key;
+            "/api/v1/person/?format=json&q=" + key;
         var self = this;
         $.ajax({
             url:url,
