@@ -3,7 +3,8 @@ var LoginStatus = Backbone.Model.extend({
     url:"/home/login/",
     
     defaults: {
-        loggedIn: false
+        loggedIn: false,
+        lastFailure: ''
     },
     
     isLoggedIn:function () {
@@ -14,21 +15,16 @@ var LoginStatus = Backbone.Model.extend({
         var self = this;
         $.ajax({
             type: 'POST',
-            url: "/home/login/",
+            url: self.url,
             data: {'username': username, 'password': password},
             dataType:"json",
             success:function (data) {
-                console.log(data)
-                // this.set({'loggedIn': True});
+                self.set({'loggedIn': data.login_successful});
+                self.set({'lastFailure': data.login_successful ? "" : data.reason});
             }
         });
     }
 
-    // defaults: {
-    //     loggedIn: false,
-    //     apiKey: null
-    // },
-    // 
     // initialize: function () {
     //     this.bind('change:apiKey', this.onApiKeyChange, this);
     //     this.set({'apiKey': localStorage.getItem('apiKey')});

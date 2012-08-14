@@ -1,6 +1,6 @@
 window.EmployeeView = Backbone.View.extend({
 
-    tagName:"div", // Not required since 'div' is the default if no el or tagName specified
+    tagName: "div", // Not required since 'div' is the default if no el or tagName specified
 
     initialize:function () {
         // this.template = templates['Employee'];
@@ -23,7 +23,7 @@ window.EmployeeView = Backbone.View.extend({
 
 window.EmployeeSummaryView = Backbone.View.extend({
 
-    tagName:"div", // Not required since 'div' is the default if no el or tagName specified
+    tagName: "div", // Not required since 'div' is the default if no el or tagName specified
 
     initialize:function () {
         // this.template = templates['EmployeeSummary'];

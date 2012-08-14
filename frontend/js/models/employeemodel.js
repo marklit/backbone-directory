@@ -4,7 +4,7 @@ window.Employee = Backbone.Model.extend({
     
     initialize:function () {
         this.reports = new EmployeeCollection();
-        this.reports.url = '/api/v1/person/?format=json&id=' + this.id;
+        this.reports.url = this.urlRoot + '&id=' + this.id;
     },
     
     parse: function(response) {
@@ -19,9 +19,7 @@ window.EmployeeCollection = Backbone.Collection.extend({
     url:"/api/v1/person/?format=json",
 
     findByName:function (key) {
-        var url = (key == '') ? 
-            '/api/v1/person/?format=json' : 
-            "/api/v1/person/?format=json&q=" + key;
+        var url = (key == '') ? this.url : this.url + '&q=' + key;
         var self = this;
         $.ajax({
             url:url,
