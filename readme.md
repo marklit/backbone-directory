@@ -10,9 +10,32 @@ This demo uses among other technologies the following:
  * [Tastypie](http://tastypieapi.org/) (API Framework for Django)
  * [Tornado](http://www.tornadoweb.org/) (Non-blocking Web Server)
 
+You can view a live demo if this app here: [ec2-23-22-192-67.compute-1.amazonaws.com](http://ec2-23-22-192-67.compute-1.amazonaws.com:8000/)
+
 ## Installation ##
 
+If you're using a fresh installation of Ubuntu 12+ then you might need some packages installed first:
+
+```bash
+$ sudo apt-get update && \
+  sudo apt-get install python-pip python-virtualenv virtualenvwrapper \
+                        git-core build-essential python2.7-dev \
+                        libevent-1.4-2 libevent1-dev python-gevent
+```
+
+If you don't have a copy of Solr installed then have a look at these [installation notes](http://feinan.com/2012/05/19/how-to-install-solr-3-6-0-on-ubuntu-12-04-lts/).
+
+Clone a copy of this codebase from github:
+
+```bash
+$ cd ~ && git clone https://github.com/marklit/backbone-directory.git
+```
+
 Create a virtual environment.
+
+I usually hide my virtualenv folders in `~/.virtualenvs`. If you don't have this folder then create it with the following: `mkdir ~/.virtualenvs`.
+
+Then, setup the virtualenv and activate it:
 
 ```bash
 $ cd ~/.virtualenvs && \
@@ -29,7 +52,7 @@ pip install -r requirements.txt
 Then setup the database and import the fixture data.
 
 ```bash
- $ cd src && \
+ $ cd ~/backbone-directory/src && \
    python manage.py syncdb && \
    python manage.py migrate && \
    python manage.py loaddata contacts photos
@@ -38,7 +61,7 @@ Then setup the database and import the fixture data.
 Create a new solr `schema.xml`.
 
 ```bash
- $ cd src && \
+ $ cd ~/backbone-directory/src && \
    python manage.py build_solr_schema
 ```
 
@@ -47,7 +70,7 @@ Take the XML portion of the output from above and place it in `/etc/solr/conf/sc
 Once that's in place, rebuild the solr indices:
 
 ```bash
- $ cd src && \
+ $ cd ~/backbone-directory/src && \
    python manage.py rebuild_index
 ```
 
