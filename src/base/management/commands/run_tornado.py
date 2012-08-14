@@ -1,9 +1,10 @@
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from optparse import make_option
-from django.conf import settings
 import os
 import sys
 import tornado.web
+
  
 class Command(BaseCommand):
     option_list = BaseCommand.option_list + (
@@ -144,6 +145,7 @@ class Command(BaseCommand):
 
         inner_run()
 
+
 #
 #  Modify copy of the base handeler with Tornado changes
 #
@@ -151,6 +153,7 @@ from threading import Lock
 from django.core.handlers import base
 from django.core.urlresolvers import set_script_prefix
 from django.core import signals
+
 
 class DjangoHandler(tornado.web.RequestHandler, base.BaseHandler) :
     initLock = Lock()
@@ -210,7 +213,7 @@ class DjangoHandler(tornado.web.RequestHandler, base.BaseHandler) :
         if not hasattr(self, "_new_cookies"):
             self._new_cookies = []
         self._new_cookies.append(response.cookies)
-
+        
         self.write(response.content)
         self.finish()
 

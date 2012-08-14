@@ -1,6 +1,9 @@
 window.ChartsView = Backbone.View.extend({
+    
     initialize: function () {
-        this.searchResults = new CameraSettingsCollection();
+        this.searchResults = new CameraSettingsCollection;
+        this.model.on('change', this.render, this);
+        this.model.on('destroy', this.remove, this);
     },
     
     buildChart:function( dataset ) {
@@ -90,20 +93,11 @@ window.ChartsView = Backbone.View.extend({
     },
     
     render:function () {
-        $(this.el).html(this.template());
-        var self = this,
-            url = '/api/v1/camera_settings/?format=json&limit=500';
-        $.ajax({
-            url:url,
-            dataType:"json",
-            success:function (data) {
-                var dataset = []
-                data.objects.forEach(function(item) {
-                    dataset.push([item.aperture, item.shutter_speed])
-                });
-                self.buildChart(dataset)
-            }
+        var self = this;
+        this.searchResults.fetchAllStats(function(dataset) {
+            self.buildChart(dataset);
         });
+        $(this.el).html(this.template());
     }
     
 });

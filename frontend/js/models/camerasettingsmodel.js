@@ -3,8 +3,7 @@ window.CameraSettings = Backbone.Model.extend({
     urlRoot:"/api/v1/camera_settings/?format=json",
     
     initialize:function () {
-        this.reports = new CameraSettingsCollection();
-        this.reports.url = '/api/v1/camera_settings/?format=json'; // &id=' + this.id;
+        this.url = this.urlRoot + '&id=' + this.id;
     },
     
     parse: function(response) {
@@ -14,21 +13,22 @@ window.CameraSettings = Backbone.Model.extend({
 });
 
 window.CameraSettingsCollection = Backbone.Collection.extend({
-
+    url: '/api/v1/camera_settings/?format=json&limit=50',
     model: CameraSettings,
 
-    url:"/api/v1/camera_settings/?format=json&limit=1000",
-
-    getAllData:function () {
-        var url = '/api/v1/camera_settings/?format=json&limit=1000'
+    fetchAllStats:function(callback) {
         var self = this;
         $.ajax({
-            url:url,
+            url:self.url,
             dataType:"json",
             success:function (data) {
-                self.reset(data.objects);
+                var dataset = []
+                data.objects.forEach(function(item) {
+                    dataset.push([item.aperture, item.shutter_speed])
+                });
+                self.reset(dataset);
+                callback(dataset);
             }
         });
     }
-
 });
