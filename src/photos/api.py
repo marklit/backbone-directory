@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# -*- coding: utf-8 -*-
 from haystack.query import SearchQuerySet
 from .models import Photo
 from tastypie import fields
